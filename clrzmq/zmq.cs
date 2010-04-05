@@ -80,7 +80,7 @@ public class ZMQ
 
         [DllImport("libzmq", CharSet = CharSet.Ansi,
         CallingConvention = CallingConvention.Cdecl)]
-        public static extern string zmq_strerror(int errnum);
+        public static extern IntPtr zmq_strerror(int errnum);
 
     }
 
@@ -121,7 +121,8 @@ public class ZMQ
         }
 
         public Exception()
-            : base(C.zmq_strerror(C.zmq_errno()))
+            : base(Marshal.PtrToStringAnsi(C.zmq_strerror(C.zmq_errno())))
+
         {
             this.errno = C.zmq_errno();
         }
