@@ -180,9 +180,10 @@ public class ZMQ
         //  Isn't there a way to access POSIX error codes in CLR?
         private const int EAGAIN = 11;
 
-        //  TODO: Size of zmq_msg_t may differ depending on platform.
-        //  For example, on Win64 it'll definitely be longer.
-        private const int ZMQ_MSG_T_SIZE = 36;
+        //  Figure out size of zmq_msg_t structure.
+        //  It's size of pointer + 2 bytes + VSM buffer size.
+        private const int ZMQ_MAX_VSM_SIZE = 30;
+        private int ZMQ_MSG_T_SIZE = IntPtr.Size + 2 + ZMQ_MAX_VSM_SIZE;
 
         //  Don't call this, call Context.CreateSocket
         public Socket(IntPtr ptr)
