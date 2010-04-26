@@ -99,7 +99,9 @@ public class ZMQ
     public const int SNDBUF = 11;
     public const int RCVBUF = 12;
 
+    //  TODO: P2P is replaced by PAIR. Remove it.
     public const int P2P = 0;
+    public const int PAIR = 0;
     public const int PUB = 1;
     public const int SUB = 2;
     public const int REQ = 3;
